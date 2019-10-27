@@ -2,11 +2,24 @@ version: '3'
 
 services:
   backend:
+    # Inside Dockerfile the context environment changes
+    # So when build commmand executes we will be inside
+    # /Backend already.
     build:
-      context: .
+      context: ./Backend
     volumes:
-      - .:/image_uploads
+      - ./Backend:/image_uploads
     ports:
       - 3000:3000
     command: json-server -H 0.0.0.0 --watch /app/db.json
     hostname: renamed_backend
+
+  fronted:
+    build:
+      #context is used to find the where the docker file is present
+      context: ./Frontend
+    ports:
+      - 3002:3000
+    command:  bash -c "cd /frontend/myapp && npm start"
+    hostname: FrontEnd
+
