@@ -2,10 +2,11 @@ version: '3'
 
 services:
   backend:
-    image: node
+    build:
+      context: .
     volumes:
       - .:/image_uploads
     ports:
       - 3000:3000
-    command: node /image_uploads/server.js
+    command: json-server -H 0.0.0.0 --watch /app/db.json
     hostname: renamed_backend
