@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  backend:
+    image: node
+    volumes:
+      - .:/image_uploads
+    ports:
+      - 3000:3000
+    command: node /image_uploads/server.js
+    hostname: renamed_backend
