@@ -9,3 +9,4 @@ COPY . /frontend
 
 
 
+ENTRYPOINT ["myentrypoint.sh"]
